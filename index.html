@@ -1,0 +1,253 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+        <link href="css/style.css" rel="stylesheet">
+        <title>와디즈 컬러</title>
+        <style type="text/css">
+            .center {
+                float:center;
+                margin-left: 25%;
+                width: 600px;
+                height: 900px;
+                border: 1px black solid;
+            }
+            .mid-box {
+                margin-top: -30px;
+                height: 80%;
+                float: center;
+                font-size: 14pt;
+            }
+            h1 {
+                font-size: 120px;
+                margin-top: 1px;
+                margin-bottom: 1px;
+            }
+            .hea{
+                font-size: 25pt;
+            }
+            div {
+                text-align: center;
+                font-size: 50px;
+            }
+            .in {
+                font-size: 15pt;
+                height: 50px;
+                width: 100%;
+                border: none;
+                background: transparent;
+            }
+            .ta1 {
+                position: relative;
+                left: 10%;
+                width: 80%;
+            }
+            .ta2 {
+                position: relative;
+                left: 10%;
+                width: 80%;
+                height: 60%;
+            }
+            .head {
+                float:center;
+                margin: 50px;
+            }
+            .a1 {
+                font-size:15pt;
+                font-weight: 900;
+            }
+            .b1 {
+                width: 50%;
+                height: 50px;
+                text-align: left;
+                font-size: 12pt;
+            }
+            .b2 {
+                text-align: left;
+                width: 50%;
+                height: 100px;
+            }
+            .c1 {
+                width: 1px;
+                height: 30px;
+                font-size: 14pt;
+                font-weight: 900;
+                text-align: center;
+                padding: 2%;
+            }
+            .c2 {
+                width: 1px;
+                height: 50px;
+                font-size: 14pt;
+                text-align: center;
+                padding: 2%;
+            }
+            .c3 {
+                width: 1px;
+                height: 20px;
+                font-size: 14pt;
+                font-weight: 900;
+                text-align: center;
+                padding: 2%;
+            }
+            button{
+                width: 100%;
+                height: 50px;
+                color:whitesmoke;
+                background: deepskyblue;
+                font-size: 20px;
+                font-weight: 900;
+                border:none;
+                transition:0.3s;
+            }
+            button:focus {
+                outline:0;
+            }
+            button:hover{
+                background: deepskyblue;
+                cursor: pointer;
+                box-shadow: 0 2px 4px black;
+            }
+            #top {
+                color: deepskyblue;
+                font-size: 30%;
+                font-weight: 900;
+            }
+            #top1 {
+                color: black;
+                font-size: 60%;
+                font-weight: 900;
+            }
+            .img1 {
+                max-width: 50%;
+                height: 250%;
+            }
+            #footer {
+                width:100%;
+                height:100px;
+                float:left;
+                font-size: 9pt;
+                margin-top:5px;
+                margin-left: 25%;
+                background:white;
+                clear: both;
+                text-align: left;
+                bottom: 0;
+                font-family:"fo"
+            }
+            .result {
+                text-align: right;
+                font-size: 15pt;
+                text-shadow: 1px 1px 2px grey;
+                border: none;
+            }
+
+        </style>
+        <script type="text/javascript">
+            function change(){
+                // 주민번호 분리 ( year 년 month 월 day 일)
+                var frm = document.forms['frm'];
+                var jumin = frm['jumin'].value;
+                var jumin1 = jumin.split('-')
+                var year = jumin1[0]; 
+                var month = jumin1[1];
+                var day = jumin1[2];
+                
+                // 연월일 분리
+                var year_sp = year.split('');
+                var month_sp = month.split('');
+                var day_sp = day.split('');
+                
+                // 일 앞에 붙는 0 제거하고 탄생 컬러에 넣기
+                var tsc = day.replace(/(^0+)/, "");
+                frm['tsc'].value = tsc;
+                document.getElementById('tsci').src="colorbottle9/"+tsc+".jpg";
+                
+                // 월과 일 작업
+                var monday = parseInt(month_sp[0]) + parseInt(month_sp[1]) + parseInt(day_sp[0]) + parseInt(day_sp[1]);
+
+                // 연 작업
+                var year_sum = parseInt(year_sp[0]) + parseInt(year_sp[1]) + parseInt(year_sp[2]) + parseInt(year_sp[3]);
+                
+                var conum = monday + year_sum;
+                conum = conum.toString();
+                
+                // 첫번째 과정
+                var fic = conum;
+                fic = fic.toString();
+                // 두번째 과정
+                var sec = parseInt(fic[0]) + parseInt(fic[1]);
+                sec = sec.toString();
+                // 세번째 과정
+                if (sec.length == 2) {
+                    var thc = parseInt(sec[0]) + parseInt(sec[1]);
+                    frm['sac1'].value = fic;
+                    document.getElementById('sac1i').src="colorbottle9/"+fic+".jpg";
+                    frm['sac2'].value = sec;
+                    document.getElementById('sac2i').src="colorbottle9/"+sec+".jpg";
+                    frm['isc'].value = thc;
+                    document.getElementById('isci').src="colorbottle9/"+thc+".jpg";
+                } else {
+                    frm['sac1'].value = fic;
+                    document.getElementById('sac1i').src="colorbottle9/"+fic+".jpg";
+                    frm['sac2'].value = 0;
+                    document.getElementById('sac2i').src="colorbottle9/"+0+".jpg";
+                    frm['isc'].value = sec;
+                    document.getElementById('isci').src="colorbottle9/"+sec+".jpg";
+                }
+
+                event.preventDefault();
+            }
+        </script>
+    </head>
+    <body>
+    <form name="frm">
+    <div class="center">
+        <div class="head">
+            <div id="top">색을 통한 치유, 컬러테라피</div>
+            <div id="top1">나의 인생 컬러는?</div>
+        </div>
+        <div class="mid-box">
+            <table class="ta1">
+                    <th class="b1"><p class="a1">이름</p></th>
+                <tr>
+                    <td class="b1"><input type="text" class="in" style="border: skyblue 3px solid" name="name" value=""/></td>
+                </tr>
+                <tr>
+                    <td class="b1"><p class="a1">생년월일</p></td>
+                </tr>
+                <tr>
+                    <td class="b1"><input type="date" class="in" style="border: skyblue 3px solid" name="jumin" value="1999-01-01" max="2020-12-31"/></td>
+                </tr>
+                <tr>
+                    <td class="b2"><button id="button" onclick="change();changeImg();">나의 인생 컬러 확인하기</button></td>
+                </tr>
+            </table>
+            <table class="ta2">
+                    <th class="c1" colspan="2">나의 인생 컬러 결과</th>
+                <tr>
+                    <td class="c2"><input class="result" type="text" name="tsc" size="2" /><img id="tsci" class="img1" src="colorbottle9/0.jpg"></td>
+                    <td class="c2"><input class="result" type="text" name="sac1" size="2" /><img id="sac1i" class="img1" src="colorbottle9/0.jpg"></td>
+                </tr>
+                <tr>
+                    <td class="c3">탄생 컬러</td>
+                    <td class="c3">생애 컬러 1</td>
+                </tr>
+                <tr>
+                    <td class="c2"><input class="result" type="text" name="sac2" size="2" /><img id="sac2i" class="img1" src="colorbottle9/0.jpg"></td>
+                    <td class="c2"><input class="result" type="text" name="isc" size="2" /><img id="isci" class="img1" src="colorbottle9/0.jpg"></td>
+                </tr>
+                <tr>
+                    <td class="c3">생애 컬러 2</td>
+                    <td class="c3">인생여정 컬러</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="footer">
+        <p>Copyright © 2019 HEILENDE BAUM CO.LTD All rights resrtved.</p>
+        <p>상기 저작권에 대한 사항은 (주) 하이렌데 바움에 있으며 사전 승인 없이 무단전재 및 재배포 경우,관령 법령 및 규정에 의거 제재를 받을 수 있습니다.</p>
+    </div>
+    </form>
+    </body>
+</html>
